@@ -9,7 +9,7 @@ php -r "unlink('composer-setup.php');"
 2. ставим  Laravel  с указанием версии
 php composer.phar create-project --prefer-dist laravel/laravel=5.7.0
   последняя версия
-php composer.phar create-project --prefer-dist laravel/laravel blog
+php composer.phar create-project --prefer-dist laravel/laravel blogcreated_at
 
 3. Установим "базовые" пакеты: laravel-ide-helper, laravel-debugbar;
 
@@ -42,5 +42,22 @@ php artisan db:seed --class-BlogPostFactory
  php artisan migrate:refresh --seed
  если нужно ещё накатить тестовые данные, то юзаем ключ --seed:
  `php artisan migrate:fresh --seed` - удаляет все таблицы, накатывает миграции и заполняет тестовыми данными.
+
+13.  Создаем первый контролер RestTestController
+
+php artisan make:controller RestTestController --resource
+
+14.  создаем контроллеры
+ базовый
+php artisan make:controller Blog/BaseController
+для вывода постов
+php artisan make:controller Blog/PostController --resource
+
+Аутентификация
+ php artisan make:auth
+  php artisan migrate
+15. создаем контроллер  категорий
+php artisan make:controller Blog/Admin/CategoryController --resource
+16/  прописываем маржруты
 
 
