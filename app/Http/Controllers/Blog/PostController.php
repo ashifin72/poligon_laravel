@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Blog;
 use Illuminate\Http\Request;
 use App\Models\BlogPost;
 
-class PostController extends GuestBaseController
+class PostController extends GuesBaseController
 {
     /**
      * Display a listing of the resource.

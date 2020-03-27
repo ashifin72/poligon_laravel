@@ -19,19 +19,12 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::group([
-    'namespace'=> 'Blog',
-    'prefix'=> 'blog'
-],
-    function (){
-    Route::resource('posts', 'PostController')->names('blog.post');
+Route::group(['namespace'=> 'Blog','prefix'=> 'blog'], function (){
+    Route::resource('posts', 'PostController')->names('blog.posts');
 });
 //Route::resource('rest', 'RestTestController')->names('restTest');
 //Админка блога
-$groupData = [
-    'namespace'=> 'Blog\Admin',
-    'prefix'=> 'admin/blog'
-];
+$groupData = ['namespace'=> 'Blog\Admin','prefix'=> 'admin/blog'];
 
 Route::group($groupData, function (){
     // BlogCategory

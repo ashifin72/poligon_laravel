@@ -8,8 +8,12 @@ php -r "unlink('composer-setup.php');"
 
 2. ставим  Laravel  с указанием версии
 php composer.phar create-project --prefer-dist laravel/laravel=5.7.0
+bkb
+php composer.phar create-project --prefer-dist laravel/laravel blog "6.*"
   последняя версия
 php composer.phar create-project --prefer-dist laravel/laravel blogcreated_at
+
+ kexit cnfdbnm xthtp rjvgjpth Jgtycthdthf
 
 3. Установим "базовые" пакеты: laravel-ide-helper, laravel-debugbar;
 
