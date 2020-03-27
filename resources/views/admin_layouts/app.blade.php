@@ -25,9 +25,17 @@
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     Админ-панель блога
-                </a>
+                </a><ul class="nav nav-tabs">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{{route('blog.admin.categories.index')}}">Категории</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Посты</a>
+                    </li>
+
+                </ul>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
+                    <span class="navbar-toggler-icon">12365</span>
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">

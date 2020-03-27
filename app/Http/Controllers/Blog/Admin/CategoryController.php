@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Blog\Admin;
 
 use App\Models\BlogCategory;
 use Illuminate\Http\Request;
-
+use App\Http\Requests\BlogCategoryUpdateRequest;
 
 
 class CategoryController extends BaseController
@@ -16,8 +16,8 @@ class CategoryController extends BaseController
      */
     public function index()
     {
-        $paginator= BlogCategory::paginate(15);
-        return view('blog.admin.category.index', compact('paginator'));
+        $paginator = BlogCategory::paginate(15);
+        return view('blog.admin.categories.index', compact('paginator'));
     }
 
     /**
@@ -50,10 +50,10 @@ class CategoryController extends BaseController
 
     public function edit($id)
     {
-        $item= BlogCategory::find($id);
+        $item = BlogCategory::find($id);
 //       dd($item);
         $categoryList = BlogCategory::all();
-        return view('blog.admin.category.edit', compact('item','categoryList'));
+        return view('blog.admin.categories.edit', compact('item', 'categoryList'));
     }
 
     /**
@@ -63,9 +63,31 @@ class CategoryController extends BaseController
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(BlogCategoryUpdateRequest $request, $id)
     {
-        dd( __METHOD__ , $request->all(), $id);
+
+        $item = BlogCategory::find($id);
+
+        if (empty($item)) {
+            return back()
+                // если есть ошибка выдай и отправь назад на исходную точку с сохранением данных в инпуте
+                ->withErrors(['msg' => "запись id=[{$id}] не найдена",])
+                ->withInput();
+        }
+        $data = $request->all();
+        $result = $item
+            ->fill($data)
+            ->save();
+
+        if ($result) {
+            return redirect()->route('blog.admin.categories.edit', $item->id)
+                ->with(['success' => 'Успешное сохраненно!']);
+        } else {
+            return back()
+                // если есть ошибка выдай и отправь назад на исходную точку с сохранением данных в инпуте
+                ->withErrors(['msg' => 'Ошибка сохранения!',])
+                ->withInput();
+        }
     }
 
 }
